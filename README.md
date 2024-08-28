@@ -7,7 +7,7 @@ To perform regular differncing,seasonal adjustment and log transformatio on Gold
 ### ALGORITHM:
 1. Import the required packages like pandas and numpy
 2. Read the data using the pandas
-3. Perform the data preprocessing if needed and apply regular differncing,seasonal adjustment,log transformation.
+3. Apply regular differncing,seasonal adjustment,log transformation.
 4. Plot the data according to need, before and after regular differncing,seasonal adjustment,log transformation.
 5. Display the overall results.
 ### PROGRAM:
@@ -19,8 +19,6 @@ from statsmodels.tsa.stattools import adfuller
 %matplotlib inline
 
 train = pd.read_csv("/content/Gold Price.csv")
-
-
 train['Date'] = pd.to_datetime(train['Date'], format='%Y-%m-%d')  
 train.set_index('Date', inplace=True)  
 train.head()
@@ -42,22 +40,16 @@ adf_test(train['Price'])
 train['Price_diff'] = train['Price'] - train['Price'].shift(1)
 train['Price_diff'].dropna().plot(title='Differenced Gold Price')
 ```
-
-
 ### SEASONAL ADJUSTMENT:
 ```
 n = 7 
 train['Price_seasonal_diff'] = train['Price'] - train['Price'].shift(n) 
 train['Price_seasonal_diff'].dropna().plot(title='Seasonally Differenced Gold Price')
 ```
-
 ### LOG TRANSFORMATION:
 ```
 train['Price_log'] = np.log(train['Price'])
-
-
 train['Price_log_diff'] = train['Price_log'] - train['Price_log'].shift(1)
-
 train['Price_log_diff'].dropna().plot(title='Log Differenced Gold Price')
 ```
 ### OUTPUT:
@@ -77,4 +69,4 @@ train['Price_log_diff'].dropna().plot(title='Log Differenced Gold Price')
 
 
 ### RESULT:
-Thus we have created the python code for the conversion of non stationary to stationary data on Gold price.
+Thus The python code has been created for the conversion of non stationary to stationary data on Gold price.
